@@ -1,0 +1,31 @@
+ 1) Largest Sum Contiguous Subarray
+ 2) Search an element in a sorted and pivoted array
+ 3) Median of two sorted arrays => Method 3
+ 4) Program for array rotation => METHOD 3 (A Juggling Algorithm) <- program
+ 5) Block swap algorithm for array rotation
+ 6) binary search
+ 7) k largest(or smallest) elements in an array | added Min Heap method
+ 8) Find the Minimum length Unsorted Subarray, sorting which makes the complete array sorted <- program
+ 9) cycle sort and selection sort
+10) Given an array arr[], find the maximum j – i such that arr[j] > arr[i]
+11) Maximum of all subarrays of size k (Added a O(n) method), Method 2 (Use Self-Balancing BST)
+12) Find whether an array is subset of another array | Added Method 3; quick sort
+13) Median in a stream of integers (running integers)
+14) Count smaller elements on right side; method2
+15) Minimum number of jumps to reach end; method3
+16) Dynamic Programming | Set 1 (Overlapping Subproblems Property); write program
+17) Dynamic Programming | Set 3 (Longest Increasing Subsequence)
+18) The Celebrity Problem
+19) Largest subarray with equal number of 0s and 1s
+20) Dynamic Programming | Set 18 (Partition problem) -> dynamic programming
+21) Maximum Product Subarray
+22) Sort a nearly sorted (or K sorted) array -> Heap sort
+23) Maximum circular subarray sum
+24) Median of two sorted arrays of different sizes
+25) Count the number of possible triangles
+26) Find the number of islands
+27) Find the first circular tour that visits all petrol pumps
+28) Tug of War
+29) Print all possible combinations of r elements in a given array of size n
+30) http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+31) 

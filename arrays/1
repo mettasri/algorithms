@@ -1,0 +1,48 @@
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+using namespace std;
+
+void printLevelOrder(int *a, int l)
+{
+  int j = 1, k = 1;
+  for(int i = 0; i < l; i++) {
+    cout << setw(3) << a[i];
+    if(0 == --k)  {
+      cout << endl;
+      j = j * 2;
+      k = j;
+    }
+  }
+  cout << endl;
+}
+
+void dispalyHeapTree(int *a, int i, int n, int mat[][30], int *x, int y)
+{
+  cout << *x << " " << y << endl;
+  if(i > n) {
+    (*x) += 1;
+    return;
+  }
+
+  mat[*x][y] = i;
+  dispalyHeapTree(a, 2*i+1, n, mat, x, y+1);
+  dispalyHeapTree(a, 2*i+2, n, mat, x, y+1);
+}
+
+int main()
+{
+  int a[] = {10, 15, 5, 3, 18, 14, 2};
+  int mat[30][30];
+  memset(mat, 0, sizeof(mat));
+  int x = 0;
+//  printLevelOrder(a, sizeof(a)/sizeof(int));
+  dispalyHeapTree(a, 0, 14, mat, &x, 0);
+
+  for(int i = 0; i < 30; i++) {
+    for(int j = 0; j < 30; j++) {
+      cout << setw(2) << mat[i][j];
+    }
+    cout << endl;
+  }
+}
