@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+/* A binary tree node has data, pointer to left child 
+   and a pointer to right child */
+struct node 
+{
+  int data;
+  struct node* left;
+  struct node* right;
+};
+
+/* Helper function that allocates a new node with the
+   given data and NULL left and right pointers. */
+struct node* newNode(int data) 
+{
+  struct node* node = (struct node*)
+    malloc(sizeof(struct node));
+
+  node->data = data;
+  node->left = NULL;
+  node->right = NULL;  
+  return(node);
+}
+
+/*  This function traverses tree in post order to 
+    to delete each and every node of the tree */
+struct node* deleteTree(struct node* node) 
+{
+  if (node == NULL) return NULL;
+
+  /* first delete both subtrees */
+  node->left  = deleteTree(node->left);
+  node->right = deleteTree(node->right);
+
+  /* then delete the node */
+  printf("\n Deleting node: %d", node->data);
+  free(node);
+  return NULL;
+} 
+
+
+/* Driver program to test deleteTree function*/   
+int main()
+{
+  struct node *root = newNode(1); 
+  root->left            = newNode(2);
+  root->right          = newNode(3);
+  root->left->left     = newNode(4);
+  root->left->right   = newNode(5); 
+
+  root = deleteTree(root);  
+
+  printf("\n Tree deleted ");
+
+  return 0;
+}
