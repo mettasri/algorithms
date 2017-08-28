@@ -1,0 +1,13 @@
+http://www.geeksforgeeks.org/flatten-a-linked-list-with-next-and-child-pointers/
+http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
+http://www.geeksforgeeks.org/given-linked-list-line-segments-remove-middle-points/
+http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/
+http://www.geeksforgeeks.org/clone-linked-list-next-arbit-pointer-set-2/
+http://www.geeksforgeeks.org/select-a-random-node-from-a-singly-linked-list/
+http://www.geeksforgeeks.org/how-to-sort-a-linked-list-that-is-sorted-alternating-ascending-and-descending-orders/
+http://www.geeksforgeeks.org/compare-two-strings-represented-as-linked-lists/
+http://www.geeksforgeeks.org/program-to-count-number-of-set-bits-in-an-big-array/
+http://www.geeksforgeeks.org/divide-and-conquer-set-2-karatsuba-algorithm-for-fast-multiplication/
+http://www.geeksforgeeks.org/divisibility-9-using-bitwise-operators/
+
+http://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/

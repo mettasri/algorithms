@@ -1,0 +1,5 @@
+1) Function to check if a singly linked list is palindrome; (recursion)
+2) Intersection of two Sorted Linked Lists; (recursion)
+3) Merge two sorted linked lists; (recursion)
+4) Flattening a Linked List; recursion
+5) 

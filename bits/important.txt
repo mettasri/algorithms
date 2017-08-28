@@ -1,0 +1,6 @@
+1) Check if a number is multiple of 9 using bitwise operators
+2) Divide and Conquer | Set 4 (Karatsuba algorithm for fast multiplication)
+3) Count total set bits in all numbers from 1 to n
+4) Program to count number of set bits in an (big) array
+5) Write an Efficient C Program to Reverse Bits of a Number
+6) 

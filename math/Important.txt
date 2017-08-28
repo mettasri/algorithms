@@ -1,0 +1,5 @@
+1) Lucky Numbers
+2) Write a C program to print all permutations of a given string
+3) Print all combinations of points that can compose a given numberl
+4) DFA based division
+5) 
