@@ -1,0 +1,6 @@
+http://cs.stackexchange.com/questions/13930/rearrange-an-array-using-swap-with-0
+http://www.geeksforgeeks.org/minimum-number-of-swaps-required-for-arranging-pairs-adjacent-to-each-other/
+
+Binary Indexed Trees
+http://www.geeksforgeeks.org/counting-triangles-in-a-rectangular-space-using-2d-bit/
+http://www.geeksforgeeks.org/two-dimensional-binary-indexed-tree-or-fenwick-tree/

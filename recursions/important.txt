@@ -1,0 +1,2 @@
+1) Check if a number is Palindrome
+2) Recursive Functions (Towers of Hanoi)
