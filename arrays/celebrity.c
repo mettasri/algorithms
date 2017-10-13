@@ -13,15 +13,13 @@ int size = 4;
 bool MATRIX[N][N] = {{0, 0, 1, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}, {0, 0, 1, 0}};
 //bool MATRIX[N][N] = {{0, 0, 0, 1}, {0, 0, 0, 1}, {0, 0, 0, 1}, {0, 0, 0, 1}};
 
-bool HaveAcquiantance(int a, int b) 
-{ 
+bool HaveAcquiantance(int a, int b) { 
   count++;
   cout << a << ", " << b << endl;
   return MATRIX[a][b]; 
 }
 
-int CelebrityUsingStack(int size)
-{
+int CelebrityUsingStack(int size) {
   // Handle trivial case of size = 2
 
   list<int> stack; // Careful about naming
@@ -95,8 +93,7 @@ int CelebrityUsingStack(int size)
   return C;
 }
 
-int main()
-{
+int main() {
   int id = CelebrityUsingStack(size);
   id == -1 ? cout << "No celebrity" : cout << "Celebrity ID " << id << endl;;
   cout << "Total comparisions: " << count << endl;
