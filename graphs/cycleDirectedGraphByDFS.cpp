@@ -5,56 +5,52 @@
 #include<iomanip>
 using namespace std;
 
-class Graph
-{
-  int V;
-  list<int> *adj;    
+class Graph {
+  int V;            // no of vertices
+  list<int> *adj;   // adjacency lists
   bool DFSUtil(int v, vector<bool> &visited, vector<bool> &recStack, int &loopNode);
+
  public:
   Graph(int V);   
   void addEdge(int v, int w);   
   bool isCyclic();    
 };
 
-Graph::Graph(int V)
-{
+Graph::Graph(int V) {
   this->V = V;
   adj = new list<int>[V];
 }
 
-void Graph::addEdge(int v, int w)
-{
+void Graph::addEdge(int v, int w) {
   adj[v].push_back(w); 
 }
 
-bool Graph::DFSUtil(int v, vector<bool> &visited, vector<bool> &recStack, int &loopNode)
-{
+bool Graph::DFSUtil(int v, vector<bool> &visited, vector<bool> &recStack, int &loopNode) {
+  if (recStack[v]) {
+    loopNode = v;
+    return true;
+  }
+  //if (visited[v]) {
+  //  return false;
+  //}
+
   visited[v] = true;
   recStack[v] = true;
-
   for(list<int>::iterator i = adj[v].begin(); i != adj[v].end(); ++i) {
-    if (recStack[*i])  {
-      loopNode = *i;
+    //cout << v << " child " << *i << "\n";
+    if(DFSUtil(*i, visited, recStack, loopNode))
       return true;
-    }
-    if (! visited[*i]) {
-      if(DFSUtil(*i, visited, recStack, loopNode))
-        return true;
-    }
   }
-
   recStack[v] = false;  
   return false;
 }
 
-bool Graph::isCyclic()
-{
+bool Graph::isCyclic() {
   int loopNode;
   vector<bool>visited(V, false);
   vector<bool>recStack(V, false);
 
-  for(int i = 0; i < V; i++)
-  {
+  for(int i = 0; i < V; i++) {
     if(! visited[i]) {
       if (DFSUtil(i, visited, recStack, loopNode)) {
         cout << "  Loop at: "  << loopNode << endl;
@@ -70,8 +66,7 @@ bool Graph::isCyclic()
   return false;
 }
 
-int main()
-{
+int main() {
 
   Graph g1(4);
   g1.addEdge(0, 1);

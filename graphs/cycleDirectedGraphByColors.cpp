@@ -11,36 +11,33 @@ using namespace std;
 
 enum Color {WHITE, GRAY, BLACK};
 
-class Graph
-{
+class Graph {
   int V;
   list<int> *adj;    
   bool DFSColors(int v, vector<Color> &visited);
+
  public:
   Graph(int V);   
   void addEdge(int v, int w);   
   bool isCyclic();    
 };
 
-Graph::Graph(int V)
-{
+Graph::Graph(int V) {
   this->V = V;
   adj = new list<int>[V];
 }
 
-void Graph::addEdge(int v, int w)
-{
+void Graph::addEdge(int v, int w) {
   adj[v].push_back(w); 
 }
 
-bool Graph::DFSColors(int v, vector<Color> &visited)
-{
+bool Graph::DFSColors(int v, vector<Color> &visited) {
   if (visited[v] == GRAY)  {
     cout << "     Loop ";
     return true;
   }
-  visited[v] = GRAY;
 
+  visited[v] = GRAY;
   for(list<int>::iterator i = adj[v].begin(); i != adj[v].end(); ++i) {
     if (visited[*i] != BLACK) {
       if(DFSColors(*i, visited))  {
@@ -54,12 +51,10 @@ bool Graph::DFSColors(int v, vector<Color> &visited)
   return false;
 }
 
-bool Graph::isCyclic()
-{
+bool Graph::isCyclic() {
   vector<Color>visited(V, WHITE);
 
-  for(int i = 0; i < V; i++)
-  {
+  for(int i = 0; i < V; i++) {
     if(WHITE == visited[i]) {
       if (DFSColors(i, visited)) {
         cout << endl;
@@ -70,8 +65,7 @@ bool Graph::isCyclic()
   return false;
 }
 
-int main()
-{
+int main() {
   Graph g1(4);
   g1.addEdge(0, 1);
   g1.addEdge(1, 2);
