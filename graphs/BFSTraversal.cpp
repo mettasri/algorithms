@@ -5,10 +5,9 @@
 #include <iomanip>
 using namespace std;
 
-class Graph
-{
+class Graph {
   int v;
-  list<int> *pList;
+  list<int> *adj;
  
  public:
   Graph(int);
@@ -17,25 +16,20 @@ class Graph
   void breadthFirstTraversal(int node);
 };
 
-Graph::Graph(int v)
-{
+Graph::Graph(int v) {
   this->v = v;
-  pList = new list<int>[v];
+  adj = new list<int>[v];
 }
 
-void Graph::addEdge(int src, int dst)
-{
-  pList[src].push_back(dst);
+void Graph::addEdge(int src, int dst) {
+  adj[src].push_back(dst);
 }
 
-void Graph::printGraph()
-{
-  for(int i = 0; i < this->v; i++)
-  {
+void Graph::printGraph() {
+  for(int i = 0; i < this->v; i++) {
     list<int>::iterator it;
-    cout << "head[" << i << "]";
-    for(it = pList[i].begin(); it != pList[i].end();it++)
-    {
+    cout << "[" << i << "]";
+    for(it = adj[i].begin(); it != adj[i].end();it++) {
       cout << " -> " << *it;
     }
     cout << endl;
@@ -54,9 +48,9 @@ void Graph::breadthFirstTraversal(int node) {
   while(! q.empty()) {
     i = q.front();
     q.pop();
-    cout << setw(3) << i;
+    cout << setw(2) << i;
 
-    for(it = pList[i].begin(); it != pList[i].end(); it++) {
+    for(it = adj[i].begin(); it != adj[i].end(); it++) {
       if(! lookUp[*it])  {
         lookUp[*it] = true;
         q.push(*it);

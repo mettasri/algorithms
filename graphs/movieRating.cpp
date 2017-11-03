@@ -52,8 +52,7 @@ class Movie {
     }
 };
 
-void addBestMovies(Movie& movie, int numTopRatedSimilarMovies, vector<Movie *>& recommendedMovies)
-{
+void addBestMovies(Movie& movie, int numTopRatedSimilarMovies, vector<Movie *>& recommendedMovies) {
   if(recommendedMovies.size() < numTopRatedSimilarMovies) {
     cout << "added movie id: " << movie.getId() << ", " << movie.getRating() << endl;
     recommendedMovies.push_back(&movie);
@@ -72,24 +71,6 @@ void addBestMovies(Movie& movie, int numTopRatedSimilarMovies, vector<Movie *>& 
   }
 }
 
-static void getMovieRecommendationsUtil(Movie& movie, int numTopRatedSimilarMovies, vector<Movie *>& recommendedMovies, map<int, bool>& movieMap) 
-{
-  if(movieMap[movie.getId()] == true)
-    return;
-
-  movieMap[movie.getId()] = true;
-
-  addBestMovies(movie, numTopRatedSimilarMovies, recommendedMovies);
-  vector<Movie*> similarMovies = movie.getSimilarMovies();
-
-  for(int i = 0; i < similarMovies.size(); ++i) {
-    if(similarMovies[i])
-      getMovieRecommendationsUtil(*similarMovies[i], numTopRatedSimilarMovies , recommendedMovies, movieMap);
-  }
-
-  return;
-}
-
 /* 
  * @param movie Current movie.
  * @param numTopRatedSimilarMovies the maximum number of recommended movies to return.
@@ -105,11 +86,22 @@ static void getMovieRecommendationsUtil(Movie& movie, int numTopRatedSimilarMovi
  *
  */
 static void getMovieRecommendations(Movie& movie, int numTopRatedSimilarMovies, vector<Movie *>& recommendedMovies) {
-  std::map<int, bool> movieMap;
+  queue<Movie*> movie_queue;
+  movie_queue.push(&movie);
 
-  getMovieRecommendationsUtil(movie, numTopRatedSimilarMovies, recommendedMovies, movieMap);
+  std::map<int, bool> movie_map;
+  while (!movie_queue.empty()) {
+    Movie* m = movie_queue.front();
+    movie_queue.pop();
+    movie_map[m->getId()] = true;
+    addBestMovies(*m, numTopRatedSimilarMovies, recommendedMovies);
 
-  return;
+    for (auto similar_movie : m->getSimilarMovies()) {
+      if (!movie_map[similar_movie->getId()]) {
+        movie_queue.push(similar_movie);
+      }
+    }
+  }
 }
 
 bool movieIdCompare (Movie* a, Movie* b) { return (a->getId() < b->getId()); }
@@ -126,18 +118,15 @@ int main() {
       float rating;
       cin >> id >> rating;
       movieMap[id] = new Movie(id, rating);
-    }
-    else if (type.compare("similar") == 0) {
+    } else if (type.compare("similar") == 0) {
       int movieId1, movieId2;
       cin >> movieId1 >> movieId2;
       movieMap[movieId1]->addSimilarMovie(movieMap[movieId2]);
-    }
-    else if (type.compare("params") == 0) {
+    } else if (type.compare("params") == 0) {
       int rootId;
       cin >> rootId >> numTopRatedSimilarMovies;
       rootMovie = movieMap[rootId];
-    }
-    else {
+    } else {
       // ignore comments and whitespace
     }
   }
