@@ -19,6 +19,7 @@
  * 3,2,1,0   3,2,1   3,2,0   3,2   3,1,0   3,1      3,0  3         2,1,0   2,1   2,0   2        1,0   1      0
  *                                                  w=1  w=3       
  */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -26,7 +27,7 @@ using namespace std;
 
 //
 // Solution: naive recursive approach
-// runtime complexity s O(2^n)
+// runtime complexity = O(2^n)
 //
 int knapsack(vector<int>& weights, vector<int>& values, int W, int n) {
   if (W == 0 || n == 0) {
@@ -52,6 +53,3 @@ int main() {
 
   cout << "max values: " << knapsack(weights, values, W, n) << endl;
 }
-
-// Solution2: Dynamic Programming approach
-// The above solution is Overlapping Subproblems property
