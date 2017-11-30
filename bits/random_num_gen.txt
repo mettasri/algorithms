@@ -1,0 +1,78 @@
+1) Seed from /dev/urandom
+2) Read this from this file for int/long size => rand_long = read of size long from above file
+
+Generate random value between (0, 1]
+ random_val = rand_long/sizeof(long) => 0 <= random_val < 1
+
+Generate random value between min and max range
+  range = max - min + 1
+
+  random_range_val = Generate random value (0, range]
+                        get rand_long until it is less than range
+
+  random_val = min + random_range_val
+
+https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
+
+1) problem: r(5) genrates uniformly at random from 1 to 5; derive r(7) from r(5)
+  a = r(5) - 1 => uniformly generates at random from 0 to 4
+  b = r(5) - 1 => uniformly generates at random from 0 to 4
+
+  r = (5 * b) + a => uniformly generates at random from 0 to 24
+                  we will take from the range between 0 and 20
+  r(7) = (r % 7) + 1
+
+int rand7() //random number from 1 - 7 {
+  int r = 0;
+  do {
+     int a = rand(5) - 1; //uniformly at random from 0 to 4
+     int b = rand(5) - 1;  //uniformly at random from 0 to 4
+     r = 5*b + a;  //uniformly at random from 0 to 24
+  } while (r >= 21); // in this event, we have to roll again
+  //postcondition of loop: we have a number uniformly at random between 0 and 20
+
+  return r % 7 + 1; 
+  
+  //there are 3 numbers in [0, 20] for each possible return value
+  //so each has equal probability.      
+}
+
+int my_rand() // returns 1 to 7 with equal probability
+{
+    int i;
+    i = 5*foo() + foo() - 5;
+    if (i < 22)
+        return i%7 + 1;
+    return my_rand();
+}
+
+2) Problem:
+Generate a number is range (1,n) but not in a list (i,j) 
+for example range is (1,1000), list is [2,3,5,9,199,200,344]
+  
+  Actually, we can make the number in the blacklist a hole in valid range
+  1) Generate a random numner in the valid range (1, 1000 - len(list))
+  2) Iterate through the blacklis, if the genrated number is greater than or equals
+     the number in the blacklist, we should increase the genrated number by 1
+
+  example: valid range[1, 10], blacklist [2,4,7]
+  we should generate a number between
+  [1, 10 - 3] => [1, 3, 5, 6, 8, 9, 10]
+  [1, 7]      => [1, 2, 3, 4, 5, 6,  7]
+
+  code as follows
+  def generate_random(lower, upper, list):
+	  """Generate a random number in [lower, upper] and not in list"""
+	  assert lower < upper
+	  list = [x for x in list if lower <= x <= upper] 
+	  list.sort()
+	  assert (upper - lower + 1) > len(list)
+	  n = random.randint(lower, upper - len(list))
+	  print(n, end= " ")
+	  for x in list:
+	  	if x > n:
+	  		break
+	  	else:
+	  		n += 1
+	  return n
+https://www.careercup.com/question?id=14722756
