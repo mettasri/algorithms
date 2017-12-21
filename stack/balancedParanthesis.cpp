@@ -2,46 +2,32 @@
 #include <vector>
 #include <string>
 #include <stack>
+#include <unordered_map>
 using namespace std;
+
+bool isBalanced(string str) {
+	unordered_map<char, char> char_map = {{')', '('}, {']', '['}, {'}', '{'}};
+  stack<char> st;
+  for(int j = 0; j < str.length(); ++j) {
+    if('{' == str[j] || '[' == str[j] || '(' == str[j]) {
+      st.push(str[j]);
+    } else if('}' == str[j] || ']' == str[j] || ')' == str[j]) {
+      if(st.empty() || char_map[str[j]] != st.top()) {
+        return false;
+      }
+      st.pop();
+    } else {
+      return false;
+    }
+  }
+  return st.empty();
+}
 
 vector<string> checkBalance(vector<string> &values)
 {
-  char ch;
-  int i, j;
-  string str = "";
   vector<string> res;
-  stack<char> st;
-  
-  for(i = 0; i < values.size(); ++i) {
-    str = values[i];
-    st.empty();
-    for(j = 0; j < str.length(); ++j) {
-      if('{' == str[j] || '[' == str[j] || '(' == str[j]) {
-        st.push(str[j]);
-      } else if('}' == str[j] || ']' == str[j] || ')' == str[j]) {
-        if(st.empty()) {
-          cout << "stack empty " << j << endl;
-          res.push_back("NO");
-          break;
-        }
-        ch = st.top();
-        st.pop();
-        if((ch == '{' && '}' != str[j]) || 
-           (ch == '[' && ']' != str[j]) || 
-           (ch == '(' && ')' != str[j])) {
-          cout << " stack top is not balanced " << j << endl;
-          res.push_back("NO");
-          break;
-        }
-      }
-    }
-    if(! st.empty()) {
-      cout << "stack not empty " << endl;
-      res.push_back("NO");
-    }
-    else if(j == str.length()) {
-      res.push_back("YES");
-    }
+  for(int i = 0; i < values.size(); ++i) {
+    isBalanced(values[i]) ?  res.push_back("YES") : res.push_back("NO");
   }
 
   return res;

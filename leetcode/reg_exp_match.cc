@@ -41,3 +41,12 @@ Solution 1: recursive approach (method 2)
 
 Solution 2: Dynamic programming
 
+   S a a       S a a       S a a b
+ P 1         P 1         P 1      
+ . 0         a 0         c 0   
+ a 0         * 0         * 0   
+                         a 0  
+                         * 0    
+                         b 0      
+ 
+ m[0][0] = 1
