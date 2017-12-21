@@ -1,0 +1,13 @@
+Recursion: is the process of defininf a problem or (solution to a problem)
+in terms of (a simpler version of) itself
+
+Ex: Find your home
+  1) If you are at home, stop moving
+  2) Take one step toward home
+  3) Find your way to home
+
+Parts of a recursive algorithm
+  1) Base Case (i.e: when to stop or bottom part of recursive program)
+  2) Work toward Base Case
+  3) Recursive Call
+
