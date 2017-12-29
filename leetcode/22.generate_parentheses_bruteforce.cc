@@ -2,6 +2,15 @@
 #include <vector>
 using namespace std;
 
+/*
+ * Generates 2^(2n) sequences
+ * Validating sequence O(n)
+ *
+ * Time complexity: O(n*2^2n)
+ * Space complexity: O(n*2^2n)
+ *
+ */
+
 class Solution {
  public: 
   vector<string> generateParentheses(int n) {
