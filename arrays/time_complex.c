@@ -3,8 +3,7 @@
 void fun(int n)
 {
    int j = 1, i = 0;
-   while (i < n)
-   {
+   while (i < n) {
        // Some O(1) task
        i = i + j;
        printf("%d ", i);
