@@ -2,8 +2,7 @@
 #include <iomanip>
 using namespace std;
 
-void permutationsRecursion(string str, int l)
-{
+void permutationsRecursion(string str, int l) {
   if(l == str.length() - 1) {
     cout << str << endl;
     return;
@@ -16,15 +15,13 @@ void permutationsRecursion(string str, int l)
   }
 }
 
-void display(int *perm, int size)
-{
+void display(int *perm, int size) {
   for(int i = 0; i < size; ++i)
     cout << setw(2) << perm[i];
   cout << endl;
 }
 
-bool set(int *perm, int size)
-{
+bool set(int *perm, int size) {
   int i = size - 2;
   while (++perm[i] >= size) {
     if(0 == i)
@@ -37,15 +34,13 @@ bool set(int *perm, int size)
   return true;
 }
 
-void swap(char &c1, char &c2)
-{
+void swap(char &c1, char &c2) {
   char temp = c1;
   c1 = c2;
   c2 = temp;
 }
 
-void permutationsIterative(string str)
-{
+void permutationsIterative(string str) {
   int size = str.length();
   int *perm = new int[size];
   int i, j;
