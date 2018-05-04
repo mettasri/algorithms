@@ -1,23 +1,38 @@
 #include <iostream>
 #include<deque>
 using namespace std;
- 
-void display(int buffer[], deque<int> &q)
-{
+
+/*
+ *  k = 4
+ *  2 7 6 4 1 5 8
+ *  7 6 4           ->  7
+ *    7 6 4 1       ->  7
+ *      6 5         ->  6
+ *        8         ->  8
+ **************************
+ *  k = 4
+ *  3 5 4 2 -1 4 0 -3
+ *  5 4 2           ->  5
+ *    5 4 2         ->  5
+ *      4 2  4      ->  4
+ *           4      ->  4
+ *           4      ->  4
+ */
+
+
+void display(int buffer[], deque<int> &q) {
   for(int i = 0; i < q.size(); ++i) {
     cout << buffer[q.at(i)] << " ";
   }
   cout << endl;
 }
 
-void slidingWindow(int buffer[], int n, int w, int output[])
-{
+void slidingWindow(int buffer[], int n, int w, int output[]) {
    deque<int> Q;
    int i;
    /*Initilize deque Q for first window, put all W elements, however also
    removing elements which cannot be maximum in this window */
-   for (i = 0; i < w; i++)
-   {
+   for (i = 0; i < w; i++) {
    	   //This is where we are removing all less than elements
        while (!Q.empty() && buffer[i] >= buffer[Q.back()])
            Q.pop_back();
@@ -25,8 +40,7 @@ void slidingWindow(int buffer[], int n, int w, int output[])
        Q.push_back(i);
    }
    display(buffer, Q);
-   for (i = w; i < n; i++)
-   {
+   for (i = w; i < n; i++) {
        output[i-w] = buffer[Q.front()];
  
        //update Q for new window
@@ -43,8 +57,7 @@ void slidingWindow(int buffer[], int n, int w, int output[])
    output[n-w] = buffer[Q.front()];
 }
  
-int main()
-{
+int main() {
 	int a[]={3,5,4,2,-1,4,0,-3};
 	int n = sizeof(a)/sizeof(a[0]);
 	int output[n - 3];
