@@ -6,7 +6,6 @@
 #include <cmath>
 #include <ctime>
 #include <climits>
-#include <deque>
 #include <queue>
 #include <stack>
 #include <bitset>
