@@ -34,9 +34,9 @@ bool isAnagramStrings(string str1, string str2) {
 }
 
 int main() {
-    isAnagramStrings("abcd", "bcad")      ? cout << "PASS\n" : cout << "FAIL\n";
-  ! isAnagramStrings("abce", "bcad")      ? cout << "PASS\n" : cout << "FAIL\n";
-  ! isAnagramStrings("abc", "bcad")       ? cout << "PASS\n" : cout << "FAIL\n";
-    isAnagramStrings("abacbb", "bcbaba")  ? cout << "PASS\n" : cout << "FAIL\n";
-  ! isAnagramStrings("abacbb", "bcbabad") ? cout << "PASS\n" : cout << "FAIL\n";
+    isAnagramStrings("abcd", "bcad")       ? cout << "PASS\n" : cout << "FAIL\n";
+    !isAnagramStrings("abce", "bcad")      ? cout << "PASS\n" : cout << "FAIL\n";
+    !isAnagramStrings("abc", "bcad")       ? cout << "PASS\n" : cout << "FAIL\n";
+    isAnagramStrings("abacbb", "bcbaba")   ? cout << "PASS\n" : cout << "FAIL\n";
+    !isAnagramStrings("abacbb", "bcbabad") ? cout << "PASS\n" : cout << "FAIL\n";
 }
