@@ -45,6 +45,16 @@ void permutation(string str, string res) {
   }
 }
 
+/**
+ *                ABC/
+ *                 |            
+ *               BC/A 
+ *          /            \
+ *        C/AB           C/BA
+ *     /   |   \      /   |   \
+ *   CAB  ACB  ABC  CBA  BCA  BAC
+ */
+
 int main()
 {
   cout << "Method #1" << endl;
