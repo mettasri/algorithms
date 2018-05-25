@@ -61,6 +61,6 @@ void permutationsIterative(string str) {
 
 int main()
 {
-//  permutationsRecursion("3210", 0);
-  permutationsIterative("A");
+  permutationsRecursion("3210", 0);
+  //permutationsIterative("A");
 }
