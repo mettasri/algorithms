@@ -8,9 +8,9 @@ using namespace std;
 // The above solution is Overlapping Subproblems property
 // Time complexity = O(n^2)
 
-/*        j-> weights
+/*        j-> weights (max = 7)
  * val wt 0 1 2 3 4 5 6 7
- *        0 0 0 0 0 0 0 0
+ *     0  0 0 0 0 0 0 0 0
  * (1) 1  0 1 1 1 1 1 1 1
  * (4) 3  0 1 1 4 5 5 5 5
  * (5) 4  0 1 1 4 5 6 6 9
@@ -26,36 +26,32 @@ using namespace std;
  */
 
 int knapsack(vector<int>& wt, vector<int>& val, int W) {
-  int r = wt.size() + 1;
-  int c = W + 1;
-  vector<vector<int>> k(r, vector<int>(c, 0));
-  for (int i = 0; i < r; ++i) { // given weights
-    for (int j = 0; j < c; ++j) { // possible weight capacity
-      if (i == 0 || j == 0) {
-        k[i][j] = 0;
-      } else if (j < wt[i - 1]) {
-        k[i][j] = k[i - 1][j];
-      } else {
-        k[i][j] = max(val[i - 1] + k[i - 1][j - wt[i - 1]],
-                      k[i - 1][j]);
-      }
+  int n = wt.size();
+  vector<vector<int>> k(n + 1, vector<int>(W + 1, 0));
+  for (int i = 0; i <= n; ++i) { // Given weights
+    for (int w = 0; w <= W; ++w) { // Possible weight capacity
+      if (i == 0 || w == 0)
+        k[i][w] = 0;
+      else if (w < wt[i - 1])
+        k[i][w] = k[i - 1][w];
+      else
+        k[i][w] = max(val[i - 1] + k[i - 1][w - wt[i - 1]], k[i - 1][w]);
     }
   }
-  for (int i = 0; i < r; ++i) {
-    for (int j = 0; j < c; ++j) {
+  for (int i = 0; i <= n; ++i) {
+    for (int j = 0; j <= W; ++j) {
       cout << setw(2) << k[i][j];
     }
     cout << endl;
   }
-  return k[r - 1][c - 1];
+  return k[n][W];
 }
 
 int main() {
   vector<int> weights{1, 3, 4, 5};
   vector<int> values {1, 4, 5, 7};
-  //Knapsack_capacity
+  // Knapsack_capacity
   int W = 7;
 
   cout << knapsack(weights, values, W) << endl;
 }
-
